@@ -1,0 +1,6 @@
+os1_hostname: 192.168.0.4
+os1_udp_dest: 192.168.0.144
+os1_lidar_port: 7502
+os1_imu_port: 7503
+lidar_mode: 1024x10
+timestamp_mode: TIME_FROM_INTERNAL_OSC

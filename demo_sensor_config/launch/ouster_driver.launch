@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="replay" default="false" />
+  <arg name="ns" default="ouster" />
+
+  <group ns="$(arg ns)" >
+    <node pkg="ouster_ros" name="os1_node" type="os1_node" output="screen" >
+      <param name="replay" value="$(arg replay)"/>
+      <remap from="os1_node/imu_packets" to="imu_packets" />
+      <remap from="os1_node/lidar_packets" to="lidar_packets" />
+      <rosparam file="$(find demo_sensor_config)/yaml/ouster_driver_params.yaml" />
+    </node>
+
+    <node pkg="ouster_ros" type="os1_cloud_node" name="os1_cloud_node" output="screen" >
+      <param name="frame_id" value="$(arg ns)" />
+      <param name="tf_prefix" value=""/>
+    </node>
+  </group>
+
+</launch>

@@ -1,0 +1,4 @@
+- git:
+    local-name: ouster_example
+    uri: https://github.com/DataspeedInc/ouster_example.git
+    version: master

@@ -1,0 +1,31 @@
+# Set line endings of known file types
+
+# Git
+.gitattributes text=auto
+.gitignore text=auto
+.gitmodules text=auto
+
+# C++
+*.c text=auto
+*.h text=auto
+*.cpp text=auto
+*.hpp text=auto
+*.ld text=auto
+*.s text=auto
+
+# Markdown
+*.md text=auto
+
+# YAML
+*.yml text=auto
+*.yaml text=auto
+
+# CMake and Make
+*.mk text=auto
+Makefile text=auto
+Makefile.inc text=auto
+CMakeLists.txt text=auto
+
+# LaTeX
+*.tex text=auto
+*.cls text=auto
