@@ -14,8 +14,10 @@
   <depend>roscpp</depend>
   <depend>rospy</depend>
   <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
 
   <exec_depend>roslaunch</exec_depend>
   <exec_depend>urg_node</exec_depend>
+  <exec_depend>laser_filters</exec_depend>
 
 </package>

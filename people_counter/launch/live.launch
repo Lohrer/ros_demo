@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 <launch>
 
-    <!-- TODO: launch the camera
-    <node pkg="camera_aravis"  type="camera_aravis"                name="camera"                  output="screen" />
-    -->
+  <!-- TODO: launch the camera
+  <node pkg="camera_aravis"  type="camera_aravis"                name="camera"                  output="screen" />
+  -->
 
-    <!-- TODO: launch the people detector
-    <node pkg="open_pose"      type="pose_detector"                name="people_detector"         output="screen"/>
-    -->
+  <!-- TODO: launch the people detector
+  <node pkg="open_pose"      type="pose_detector"                name="people_detector"         output="screen"/>
+  -->
 
-    <!-- Launch the door state and people at door detectors that give the people counter the data it needs -->
-    <node pkg="people_counter" type="person_at_door_detector" name="person_at_door_detector" output="screen" />
-    <node pkg="people_counter" type="door_state_detector"     name="door_state_detector"     output="screen" />
+  <!-- Launch the door state and people at door detectors that give the people counter the data it needs -->
+  <node pkg="people_counter" type="person_at_door_detector" name="person_at_door_detector" output="screen" />
+  <node pkg="people_counter" type="door_state_detector"     name="door_state_detector"     output="screen" />
 
-    <!-- Launch the actual people counter, for counting the number of people in the room -->
-    <node pkg="people_counter" type="people_counter"          name="people_counter"          output="screen" />
+  <!-- Launch the actual people counter, for counting the number of people in the room -->
+  <node pkg="people_counter" type="people_counter"          name="people_counter"          output="screen" />
 
-    <!-- Launch the lidar with a nice output filter -->
-    <include file="$(find people_counter)/launch/hokuyo_driver.launch" />
+  <!-- Launch the lidar with a nice output filter -->
+  <include file="$(find people_counter)/launch/hokuyo_driver.launch" />
 </launch>
