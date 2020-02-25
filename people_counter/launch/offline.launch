@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="bag_file" default="$(find people_counter)/bag/door_open_1.bag"
+       doc="Playback bag file for offline mode" />
+
+  <include file="$(find people_counter)/launch/live.launch" >
+    <arg name="bag_file" value="$(arg bag_file)" />
+  </include>
+</launch>
