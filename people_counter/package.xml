@@ -11,6 +11,7 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
+  <depend>dynamic_reconfigure</depend>
   <depend>roscpp</depend>
   <depend>rospy</depend>
   <depend>std_msgs</depend>

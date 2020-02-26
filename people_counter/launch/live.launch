@@ -13,7 +13,9 @@
   <!-- Launch the door state and people at door detectors that give the people counter the data it needs -->
   <node pkg="people_counter" type="person_at_door_detector" name="person_at_door_detector" output="screen" />
   <node pkg="people_counter" type="door_state_detector"     name="door_state_detector"     output="screen">
-    <remap from="scan" to="/laser/scan_filtered" />
+    <param name="angle_min" value="0.22" />
+    <param name="angle_max" value="0.55" />
+    <remap from="scan" to="/laser/scan" />
   </node>
 
   <!-- Launch the actual people counter, for counting the number of people in the room -->
