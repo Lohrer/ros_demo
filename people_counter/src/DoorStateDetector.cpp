@@ -1,11 +1,12 @@
 #include "DoorStateDetector.hpp"
+#include <algorithm>  // std::sort
+#include <cmath>      // round
 
 namespace people_counter
 {
   DoorStateDetector::DoorStateDetector(ros::NodeHandle& n, ros::NodeHandle& pn)
   {
-    first_avg_ = -1;
-    state_prev_ = false;
+    door_dist_ = -1.0; // Negative means uncalibrated
     sub_scan_ = n.subscribe<sensor_msgs::LaserScan>("scan", 10, &DoorStateDetector::recvScan, this);
     pub_door_open_ = n.advertise<std_msgs::Bool>("door_open", 1);
     pub_scan_ = n.advertise<sensor_msgs::LaserScan>("scan_door", 1);
@@ -32,33 +33,25 @@ namespace people_counter
       }
     }
     float avg = sum / door_scan.ranges.size();
-    //ROS_INFO_STREAM("max: " << max);
+
+    // Sort ranges shortest to farthest
+    std::vector<float> sorted_ranges;
+    for (int i = 0; i < door_scan.ranges.size(); i++) {
+      if (door_scan.ranges[i] < door_scan.range_max) {
+        sorted_ranges.push_back(door_scan.ranges[i]);
+      }
+    }
+    std::sort(std::begin(sorted_ranges), std::end(sorted_ranges));
+    size_t idx = (size_t)std::round(sorted_ranges.size()*cfg_.range_percentile);
+    float val = sorted_ranges[idx];
 
     // First time, calibrate door distance
-    if (first_avg_ < 0) {
-      first_avg_ = max;
+    if (door_dist_ < 0) {
+      door_dist_ = val;
     }
 
     std_msgs::Bool state_msg;
-
-    // Verify sane values (someone isn't blocking lidar)
-    /*if (avg - first_avg_ < -2) { // 2 meters closer than normal, hmm...
-      state_msg.data = state_prev_;
-      for (int i = min_idx; i < max_idx; i++) {
-        door_scan.intensities.push_back(state_prev_ ? 1 : 0);
-      }
-    } else if (avg - first_avg_ > 1) {
-      state_msg.data = true;
-      for (int i = min_idx; i < max_idx; i++) {
-        door_scan.intensities.push_back(1);
-      }
-    } else {
-      state_msg.data = false;
-      for (int i = min_idx; i < max_idx; i++) {
-        door_scan.intensities.push_back(0);
-      }
-    }*/
-    if (max - first_avg_ > 1) {
+    if (val - door_dist_ > cfg_.open_thresh) {
       state_msg.data = true;
       for (int i = min_idx; i < max_idx; i++) {
         door_scan.intensities.push_back(1);
@@ -69,7 +62,6 @@ namespace people_counter
         door_scan.intensities.push_back(0);
       }
     }
-    state_prev_ = state_msg.data;
 
     pub_door_open_.publish(state_msg);
     pub_scan_.publish(door_scan);
@@ -80,6 +72,10 @@ namespace people_counter
     // Verify min/max angles make sense
     if (config.angle_max < config.angle_min) {
       config.angle_max = config.angle_min;
+    }
+    if (config.calibrate) {
+      config.calibrate = false;
+      door_dist_ = -1;
     }
     cfg_ = config;
   }

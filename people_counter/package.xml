@@ -20,5 +20,6 @@
   <exec_depend>roslaunch</exec_depend>
   <exec_depend>urg_node</exec_depend>
   <exec_depend>laser_filters</exec_depend>
+  <exec_depend>rqt_reconfigure</exec_depend>
 
 </package>

@@ -27,7 +27,6 @@ namespace people_counter
       dynamic_reconfigure::Server<DoorStateDetectorConfig> srv_;
       DoorStateDetectorConfig cfg_;
 
-      float first_avg_;
-      bool state_prev_;
+      float door_dist_;
   };
 }

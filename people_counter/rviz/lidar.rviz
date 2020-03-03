@@ -93,7 +93,7 @@ Visualization Manager:
       Name: Image
       Normalize Range: true
       Queue Size: 2
-      Transport Hint: raw
+      Transport Hint: compressed
       Unreliable: false
       Value: true
   Enabled: true
@@ -123,7 +123,7 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: 0
+      Angle: 4.712399959564209
       Class: rviz/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
@@ -133,10 +133,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 174.28408813476562
+      Scale: 150
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz)
-      X: 0
+      X: 3
       Y: 0
     Saved: ~
 Window Geometry:
