@@ -8,7 +8,7 @@ namespace people_counter
   {
     pub_num_people_ = n.advertise<std_msgs::Int16>("num_people", 10);
     sub_door_open_ = n.subscribe("door_open", 10, &PeopleCounter::recvDoorOpen, this);
-    sub_door_open_ = n.subscribe("person_at_door", 10, &PeopleCounter::recvPersonAtDoor, this);
+    sub_person_at_door_ = n.subscribe("person_at_door", 10, &PeopleCounter::recvPersonAtDoor, this);
   }
 
 void PeopleCounter::recvPersonAtDoor(const std_msgs::Bool::ConstPtr & msg) {
