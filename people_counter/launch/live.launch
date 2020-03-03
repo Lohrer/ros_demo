@@ -2,9 +2,8 @@
 <launch>
   <arg name="bag_file" default="" doc="Playback bag file for offline mode" />
 
-  <!-- TODO: launch the camera
-  <node pkg="camera_aravis"  type="camera_aravis"                name="camera"                  output="screen" />
-  -->
+  <!-- launch the camera -->
+  <include file="$(find camera_aravis)/launch/simple_camera.launch">
 
   <!-- TODO: launch the people detector
   <node pkg="open_pose"      type="pose_detector"                name="people_detector"         output="screen"/>
