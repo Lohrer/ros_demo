@@ -1,0 +1,4 @@
+- git:
+    local-name: camera_aravis
+    uri: https://github.com/linknum23/camera_aravis.git
+    version: master
