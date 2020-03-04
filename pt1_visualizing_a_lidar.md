@@ -17,7 +17,7 @@
 
     git checkout example/skeleton
 
-    rosed people_counter launch/live.launch
+    rosed people_counter live.launch
 
 ## Making a node
 
@@ -30,15 +30,17 @@
 ### What do you put in a node?
 
 1. Add subscriber for /laser/scan
+1. Add publisher for /door_open (always publish False for now)
 1. Build the door_state_detector
 1. Add door_state_detector to the launch file
 1. Run the system
 
-    catkin_make && roslaunch people_counter launch/live.launch
+    catkin_make && roslaunch people_counter live.launch
 
 ### What about things that change? We don't want to compile them
+
 1. Add dynamic_reconfigure
-1. Add publisher for /door/scan, for visualizing our detection
+1. Add publisher for /scan_door, for visualizing our detection
 1. Test dynamic angle modification
 
     rosrun rqt_reconfigure rqt_reconfigure
@@ -46,4 +48,10 @@
 1. Add angle parameters to the launch file, so we don't have to do this every time
 1. Test parameters
 
-### TODO: add final details of mode
+### Detecting the door door state
+
+1. Sort ranges, pick the range at a given percentile
+1. Add parameters for range percentile and threshold
+1. Add calibration to set the door distance
+1. If a the Xth percentile of a set of ranges is farther away than the
+   threshold, the door is open. Otherwise, it is closed.
