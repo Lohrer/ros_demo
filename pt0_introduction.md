@@ -16,7 +16,7 @@
 1. MATLAB?
    1. No special drivers (usb can, but not lidar or fancy camera)
    1. built in image processing tools
-   1. food visualizations
+   1. good visualizations
    1. slow
 1. C++?
     1. efficient
@@ -31,4 +31,5 @@
     1. modular (scales well for when project gets bigger)
 
 ## Show ros system diagram
-system.png
+
+![system diagram](https://github.com/Lohrer/ros_demo/raw/master/ros_system_diagram.png)
