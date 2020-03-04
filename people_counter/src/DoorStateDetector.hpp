@@ -17,16 +17,16 @@ namespace people_counter
       DoorStateDetector(ros::NodeHandle& n, ros::NodeHandle& pn);
 
     private:
-      void recvScan(const sensor_msgs::LaserScanConstPtr& msg);
-      void reconfig(DoorStateDetectorConfig& config, uint32_t level);
+      // Callbacks
+      //void recvScan(const sensor_msgs::LaserScanConstPtr& msg);
+      //void reconfig(DoorStateDetectorConfig& config, uint32_t level);
 
-      ros::Subscriber sub_scan_;
-      ros::Publisher pub_door_open_;
-      ros::Publisher pub_scan_;
+      // Subscribers/publishers
+      //ros::Subscriber sub_;
+      //ros::Publisher pub_;
 
-      dynamic_reconfigure::Server<DoorStateDetectorConfig> srv_;
-      DoorStateDetectorConfig cfg_;
-
-      float door_dist_;
+      // Dynamic reconfigure
+      //dynamic_reconfigure::Server<DoorStateDetectorConfig> srv_;
+      //DoorStateDetectorConfig cfg_;
   };
 }

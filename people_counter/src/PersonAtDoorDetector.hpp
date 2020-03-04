@@ -13,10 +13,5 @@ namespace people_counter
       PersonAtDoorDetector(ros::NodeHandle& n, ros::NodeHandle& pn);
 
     private:
-      void recvPoses(const std_msgs::Bool::ConstPtr & msg);
-
-      // publishers and subscribers
-      ros::Publisher pub_person_at_door_;
-      ros::Subscriber sub_poses_;
   };
 }

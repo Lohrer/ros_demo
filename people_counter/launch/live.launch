@@ -1,23 +1,16 @@
 <?xml version="1.0"?>
 <launch>
-  <!-- launch the camera -->
-  <include file="$(find camera_aravis)/launch/simple_camera.launch"/>
+  <!-- TODO: Launch Lidar driver -->
 
-  <!-- TODO: launch the people detector
-  <node pkg="open_pose"      type="pose_detector"                name="people_detector"         output="screen"/>
-  -->
+  <!-- TODO: Launch camera driver -->
 
-  <!-- Launch the door state and people at door detectors that give the people counter the data it needs -->
-  <node pkg="people_counter" type="person_at_door_detector" name="person_at_door_detector" output="screen" />
-  <node pkg="people_counter" type="door_state_detector"     name="door_state_detector"     output="screen">
-    <param name="angle_min" value="0.22" />
-    <param name="angle_max" value="0.55" />
-    <remap from="scan" to="/laser/scan" />
-  </node>
+  <!-- TODO: Launch the door state detector -->
 
-  <!-- Launch the actual people counter, for counting the number of people in the room -->
-  <node pkg="people_counter" type="people_counter"          name="people_counter"          output="screen" />
+  <!-- TODO: Launch the people at door detector -->
 
-  <!-- Launch the lidar with a nice output filter -->
-  <include file="$(find people_counter)/launch/hokuyo_driver.launch"/>
+  <!-- TODO: Launch the people detector -->
+
+  <!-- TODO: Launch rviz -->
+
+  <!-- TODO: Launch reconfigure GUI -->
 </launch>

@@ -1,28 +1,16 @@
 <?xml version="1.0"?>
 <launch>
-  <arg name="bag_file" default="$(find people_counter)/bag/door_open_close_multiple_people.bag"
-       doc="Playback bag file for offline mode" />
+  <!-- TODO: Create bag file parameter -->
 
-  <!-- Play bag file -->
-  <node if="$(eval len(arg('bag_file')) > 0)" pkg="rosbag" type="play"
-        name="player" args="--clock --loop $(arg bag_file)" />
+  <!-- TODO: Launch the recording -->
 
-  <!-- Launch the door state and people at door detectors that give the people counter the data it needs -->
-  <node pkg="people_counter" type="person_at_door_detector" name="person_at_door_detector" output="screen" />
-  <node pkg="people_counter" type="door_state_detector"     name="door_state_detector"     output="screen">
-    <param name="angle_min"         value="-0.03" />
-    <param name="angle_max"         value="0.21" />
-    <param name="open_thresh"       value="0.1" />
-    <param name="range_percentile"  value="0.5" />
-    <remap from="scan"              to="/laser/scan" />
-  </node>
+  <!-- TODO: Launch the door state detector -->
 
-  <!-- Launch the actual people counter, for counting the number of people in the room -->
-  <node pkg="people_counter" type="people_counter"          name="people_counter"          output="screen" />
+  <!-- TODO: Launch the people at door detector -->
 
-  <!-- Open rviz -->
-  <node pkg="rviz" type="rviz" name="viz" args="-d $(find people_counter)/rviz/lidar.rviz" />
+  <!-- TODO: Launch the people detector -->
 
-  <!-- Open rqt reconfigure gui -->
-  <node pkg="rqt_reconfigure" type="rqt_reconfigure" name="config" />
+  <!-- TODO: Launch rviz -->
+
+  <!-- TODO: Launch reconfigure GUI -->
 </launch>
