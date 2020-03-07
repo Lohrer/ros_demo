@@ -6,14 +6,13 @@ namespace people_counter
 {
   DoorStateDetector::DoorStateDetector(ros::NodeHandle& n, ros::NodeHandle& pn)
   {
-    //sub_ = n.subscribe<sensor_msgs::LaserScan>("sub", 10, &DoorStateDetector::recvSub, this);
-    //pub_ = n.advertise<std_msgs::Bool>("pub", 1);
+    sub_laser_ = n.subscribe<sensor_msgs::LaserScan>("/laser/scan", 10, &DoorStateDetector::recvScan, this);
+    pub_door_state_ = n.advertise<std_msgs::Bool>("door_state", 1);
     //srv_.setCallback(boost::bind(&DoorStateDetector::reconfig, this, _1, _2));
   }
 
-  // TODO: Receive messages
-  //void DoorStateDetector::recvScan(const sensor_msgs::LaserScanConstPtr& msg)
-  //{
+  void DoorStateDetector::recvScan(const sensor_msgs::LaserScanConstPtr& msg)
+  {
     // TODO: Reduce scan to just the door and surrounding flat wall
     /*
     sensor_msgs::LaserScan door_scan = *msg;
@@ -29,9 +28,10 @@ namespace people_counter
 
     // TODO: Publish scan that has been reduced to just the door for visualization
 
-    //std_msgs::Bool msg_out;
-    //pub_.publish(msg_out);
-  //}
+    std_msgs::Bool msg_out;
+    msg_out.data = false;
+    pub_door_state_.publish(msg_out);
+  }
 
   // TODO: Receive configuration changes
   //void DoorStateDetector::reconfig(DoorStateDetectorConfig& config, uint32_t level)

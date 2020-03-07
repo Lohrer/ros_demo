@@ -1,10 +1,21 @@
 <?xml version="1.0"?>
 <launch>
-  <!-- TODO: Launch Lidar driver -->
+  <!-- Start LIDAR driver if live -->
+  <node ns="laser" pkg="urg_node" type="urg_node" name="lidar"
+        respawn="true" output="screen">
+    <param name="min_ang" value="-2.35" />
+    <param name="max_ang" value="2.35" />
+    <param name="ip_address" value="10.0.0.9" />
+    <param name="ip_port" value="10940" />
+    <param name="frame_id" value="/laser" />
+  </node>
+
 
   <!-- TODO: Launch camera driver -->
 
-  <!-- TODO: Launch the door state detector -->
+  <!-- Launch the door state detector -->
+    <node pkg="people_counter" type="door_state_detector" name="door_state_detector"
+        respawn="true" output="screen" />
 
   <!-- TODO: Launch the people at door detector -->
 
