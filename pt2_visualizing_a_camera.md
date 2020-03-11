@@ -5,7 +5,9 @@
 
     rosrun rqt_image_view rqt_image_view
 
-- notice how fisheyed the camera looks, can we make it look better?
+## Add the camera to live.launch
+
+notice how fisheyed the camera looks, can we make it look better?
 
 ## Calibrating a camera
 We can use a checkerboard of known size to figure out what the lens's distortion coefficients are 
