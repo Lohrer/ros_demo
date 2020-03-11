@@ -3,8 +3,20 @@
   <!-- launch the camera -->
   <include file="$(find camera_aravis)/launch/simple_camera.launch"/>
 
+  <!-- TODO: rectify the image
+  <group ns="camera" >
+    <node pkg="image_proc" type="image_proc" name="img_proc" output="screen">
+      <remap from="image_raw" to="image"/>
+    </node>
+  </group>
+  -->
+
   <!-- TODO: launch the people detector
-  <node pkg="open_pose"      type="pose_detector"                name="people_detector"         output="screen"/>
+  <node pkg="openpose_ros" type="openpose_ros_node" name="people_detector" output="screen">
+    <param name="display_output"           value="True" />
+    <remap from="/camera/image_raw"        to="/camera/image" />
+    <remap from="/openpose_ros/human_list" to="/people" />
+  </node>
   -->
 
   <!-- Launch the door state and people at door detectors that give the people counter the data it needs -->
@@ -19,5 +31,7 @@
   <node pkg="people_counter" type="people_counter"          name="people_counter"          output="screen" />
 
   <!-- Launch the lidar with a nice output filter -->
+  <!-- TODO: this is disabled for now, spits out lots of erros when disconnected
   <include file="$(find people_counter)/launch/hokuyo_driver.launch"/>
+  -->
 </launch>
