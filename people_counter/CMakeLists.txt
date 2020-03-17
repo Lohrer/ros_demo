@@ -6,10 +6,13 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   sensor_msgs
+  image_transport
+  cv_bridge
 )
 
 generate_dynamic_reconfigure_options(
   cfg/DoorStateDetector.cfg
+  cfg/PersonAtDoorDetector.cfg
 )
 
 catkin_package()

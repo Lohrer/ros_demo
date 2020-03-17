@@ -14,16 +14,27 @@
   <!-- launch the people detector -->
   <node pkg="openpose_ros" type="openpose_ros_node" name="people_detector" output="screen">
     <param name="display_output"           value="True" />
-    <remap from="/camera/image_raw"        to="/camera/image" />
+    <remap from="/camera/image_raw"        to="/camera/image2" />
     <remap from="/openpose_ros/human_list" to="/people" />
   </node>
 
   <!-- Play bag file -->
   <node if="$(eval len(arg('bag_file')) > 0)" pkg="rosbag" type="play"
         name="player" args="--clock --loop $(arg bag_file)" />
+  <!-- Uncompress the image-->
+  <node pkg="image_transport" type="republish" name="decompressor" output="screen" args="compressed raw">
+    <remap from="in" to="camera/image" />
+    <remap from="out" to="camera/image2" />
+  </node>
 
   <!-- Launch the door state and people at door detectors that give the people counter the data it needs -->
-  <node pkg="people_counter" type="person_at_door_detector" name="person_at_door_detector" output="screen" />
+  <node pkg="people_counter" type="person_at_door_detector" name="person_at_door_detector" output="screen" >
+    <remap from="image"  to="camera/image2" />
+    <param name="x"      value="569" />
+    <param name="y"      value="225" />
+    <param name="width"  value="183" />
+    <param name="height" value="368" />
+  </node>
   <node pkg="people_counter" type="door_state_detector"     name="door_state_detector"     output="screen">
     <param name="angle_min"         value="-0.03" />
     <param name="angle_max"         value="0.21" />
@@ -33,7 +44,8 @@
   </node>
 
   <!-- Launch the actual people counter, for counting the number of people in the room -->
-  <node pkg="people_counter" type="people_counter"          name="people_counter"          output="screen" />
+  <node pkg="people_counter" type="people_counter"          name="people_counter"          output="screen" >
+  </node>
 
   <!-- Open rviz -->
   <node pkg="rviz" type="rviz" name="viz" args="-d $(find people_counter)/rviz/lidar.rviz" />
