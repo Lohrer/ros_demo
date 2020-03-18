@@ -3,13 +3,12 @@
   <!-- launch the camera -->
   <include file="$(find camera_aravis)/launch/simple_camera.launch"/>
 
-  <!-- TODO: rectify the image
+  <!-- rectify the image -->
   <group ns="camera" >
     <node pkg="image_proc" type="image_proc" name="img_proc" output="screen">
       <remap from="image_raw" to="image"/>
     </node>
   </group>
-  -->
 
   <!-- TODO: launch the people detector
   <node pkg="openpose_ros" type="openpose_ros_node" name="people_detector" output="screen">
