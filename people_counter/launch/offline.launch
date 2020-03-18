@@ -3,20 +3,14 @@
   <arg name="bag_file" default="$(find people_counter)/bag/door_open_close_multiple_people.bag"
        doc="Playback bag file for offline mode" />
 
-  <!-- TODO: rectify the image
-  <group ns="camera" >
-    <node pkg="image_proc" type="image_proc" name="img_proc" output="screen">
-      <remap from="image_raw" to="image"/>
-    </node>
-  </group>
-  -->
-
   <!-- launch the people detector -->
+  <!--
   <node pkg="openpose_ros" type="openpose_ros_node" name="people_detector" output="screen">
     <param name="display_output"           value="True" />
     <remap from="/camera/image_raw"        to="/camera/image2" />
     <remap from="/openpose_ros/human_list" to="/people" />
   </node>
+  -->
 
   <!-- Play bag file -->
   <node if="$(eval len(arg('bag_file')) > 0)" pkg="rosbag" type="play"
@@ -27,7 +21,8 @@
     <remap from="out" to="camera/image2" />
   </node>
 
-  <!-- Launch the door state and people at door detectors that give the people counter the data it needs -->
+  <!-- TODO: Launch the door state and people at door detectors that give the people counter the data it needs -->
+  <!--
   <node pkg="people_counter" type="person_at_door_detector" name="person_at_door_detector" output="screen" >
     <remap from="image"  to="camera/image2" />
     <param name="x"      value="569" />
@@ -35,6 +30,9 @@
     <param name="width"  value="183" />
     <param name="height" value="368" />
   </node>
+  -->
+
+  <!-- Launch the door state detector -->
   <node pkg="people_counter" type="door_state_detector"     name="door_state_detector"     output="screen">
     <param name="angle_min"         value="-0.03" />
     <param name="angle_max"         value="0.21" />

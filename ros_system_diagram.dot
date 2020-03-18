@@ -68,8 +68,8 @@ digraph graphname {
 		shape=ellipse,
 		tooltip="/camera",
 		width=1.0832];
-	n___people_detector -> n___person_at_door_detector	 [URL=topic_3A__people_locations,
-		label="/people_locations",
+	n___people_detector -> n___person_at_door_detector	 [URL=topic_3A__people,
+		label="/people",
 		lp="701.51,88.5",
 		penwidth=1,
 		pos="e,865.03,184.27 394.73,93.494 466.59,68.114 651.48,14.64 782.75,81 821.45,100.56 847.45,145.73 860.94,175.01"];

@@ -1,4 +1,48 @@
-# Visualizing with a camera
+# Using a camera to detect people at the door
+
+## Wait what are we trying to do again?
+
+    roscd people_counter/..
+    feh -Z ros_system_diagram.png
+
+## Where we left off
+
+    roslaunch people_counter offline.launch
+
+## Connecting openpose
+
+    roslaunch openpose_ros openpose_ros.launch
+    rosrun rqt_graph rqt_graph
+
+### Taking an example launchfile and modifying it
+- Add openpose_ros.launch contents to live.launch
+- Turn off visualizations, they can be distracting
+
+## Making a person at door detector
+### Add necessary subscribers and publishers
+
+    catkin_make
+    roslaunch people_counter offline.launch
+    rosrun rqt_graph rqt_graph
+
+### Investigate open pose message
+What can we use to detect a person?
+
+    rostopic echo -c --noarr /people
+
+### Add a bounding box for the peopl with visualization
+
+    catkin_make
+    roslaunch people_counter offline.launch
+
+### How should we detect if a person is at the door?
+### Add a bounding box to the door with visualization
+
+    catkin_make
+    roslaunch people_counter offline.launch
+
+### Add check if a person is inside the bounding box
+
 ## Running the ros camera driver
 
     roslaunch camera_aravis simple_camera.launch
@@ -30,10 +74,5 @@ Try using image_proc:
 
 Lets add it to live.launch
 
-## Connecting openpose
+## Questions?
 
-   roslaunch openpose_ros openpose_ros openpose_ros.launch
-
-### Taking an example launchfile and modifying it
-- Add openpose_ros.launch contents to live.launch
-- Turn off visualizations, they can be distracting

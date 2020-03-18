@@ -32,4 +32,4 @@
 
 ## Show ros system diagram
 
-![system diagram](https://github.com/Lohrer/ros_demo/raw/master/ros_system_diagram.png)
+![system diagram](https://github.com/Lohrer/ros_demo/raw/camera_demo_pt1/ros_system_diagram.png)
