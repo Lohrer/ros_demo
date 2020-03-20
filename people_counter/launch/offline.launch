@@ -1,16 +1,26 @@
 <?xml version="1.0"?>
 <launch>
-  <!-- TODO: Create bag file parameter -->
+  <!-- Create bag file parameter -->
+  <arg name="bag_file" default="$(find people_counter)/bag/door_open_close_multiple_people.bag"
+       doc="Playback bag file for offline mode" />
 
-  <!-- TODO: Launch the recording -->
+  <!-- Launch the recording -->
+  <node pkg="rosbag" type="play" name="player" args="--clock --loop $(arg bag_file)" />
 
-  <!-- TODO: Launch the door state detector -->
+  <!-- Launch the door state detector -->
+    <node pkg="people_counter" type="door_state_detector" name="door_state_detector"
+        respawn="true" output="screen">
+      <param name="angle_min"         value="-0.02" />
+      <param name="angle_max"         value="0.22" />
+    </node>
 
   <!-- TODO: Launch the people at door detector -->
 
   <!-- TODO: Launch the people detector -->
 
-  <!-- TODO: Launch rviz -->
+  <!-- Open rviz -->
+  <node pkg="rviz" type="rviz" name="viz" args="-d $(find people_counter)/rviz/lidar.rviz" />
 
-  <!-- TODO: Launch reconfigure GUI -->
+  <!-- Open rqt reconfigure gui -->
+  <node pkg="rqt_reconfigure" type="rqt_reconfigure" name="config" />
 </launch>
