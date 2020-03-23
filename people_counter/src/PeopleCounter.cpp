@@ -53,6 +53,9 @@ void PeopleCounter::runStateMachine() {
     if (door_open_) {
       state_ = DOOR_OPEN_AFTER_PERSON;
       ROS_INFO("DOOR_OPEN_AFTER_PERSON");
+    } else if (!person_at_door_) {
+      state_ = IDLE;
+      ROS_INFO("IDLE");
     }
     break;
   case DOOR_OPEN_AFTER_PERSON:
