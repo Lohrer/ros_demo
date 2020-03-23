@@ -14,7 +14,7 @@
 
   <!-- Play bag file -->
   <node if="$(eval len(arg('bag_file')) > 0)" pkg="rosbag" type="play"
-        name="player" args="--clock --loop $(arg bag_file) -r 0.5" output="screen"/>
+        name="player" args="--clock --loop $(arg bag_file) -r 0.5"/>
   <!-- Uncompress the image-->
   <node pkg="image_transport" type="republish" name="decompressor" output="screen" args="compressed raw">
     <remap from="in" to="camera/image" />
