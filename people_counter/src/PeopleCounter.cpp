@@ -83,10 +83,10 @@ void PeopleCounter::runStateMachine() {
       state_ = IDLE;
       ROS_INFO("IDLE");
       if (count_ > 0) {
-	count_--;
-	ROS_INFO_STREAM("count=" << count_);
+        count_--;
+        ROS_INFO_STREAM("count=" << count_);
       } else {
-	ROS_ERROR("Detected negative people");
+        ROS_ERROR("Detected negative people");
       }
     }
     break;
