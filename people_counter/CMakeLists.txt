@@ -8,6 +8,7 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   image_transport
   cv_bridge
+  jsk_rviz_plugins
 )
 
 generate_dynamic_reconfigure_options(

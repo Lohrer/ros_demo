@@ -1,8 +1,10 @@
 #pragma once
 
 #include <ros/ros.h>
+// Messages
 #include <std_msgs/Bool.h>
 #include <std_msgs/Int32.h>
+#include <jsk_rviz_plugins/OverlayText.h>
 
 namespace people_counter
 {
@@ -14,6 +16,7 @@ namespace people_counter
     DOOR_OPEN_BEFORE_PERSON,
     DOOR_CLOSING_LEAVING,
     DOOR_CLOSING_ENTERING,
+    DOOR_CLOSING_AFTER_PERSON,
   };
   class PeopleCounter
   {
@@ -33,6 +36,7 @@ namespace people_counter
 
       // publishers and subscribers
       ros::Publisher  pub_num_people_;
+      ros::Publisher  pub_debug_count_;
       ros::Subscriber sub_person_at_door_;
       ros::Subscriber sub_door_open_;
   };

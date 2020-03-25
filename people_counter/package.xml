@@ -18,6 +18,7 @@
   <depend>sensor_msgs</depend>
   <depend>image_transport</depend>
   <depend>cv_bridge</depend>
+  <depend>jsk_rviz_plugins</depend>
 
   <exec_depend>roslaunch</exec_depend>
   <exec_depend>urg_node</exec_depend>

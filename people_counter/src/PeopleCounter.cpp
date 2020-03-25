@@ -10,6 +10,7 @@ namespace people_counter
     pub_num_people_ = n.advertise<std_msgs::Int32>("num_people", 10);
     sub_door_open_ = n.subscribe("door_open", 10, &PeopleCounter::recvDoorOpen, this);
     sub_person_at_door_ = n.subscribe("person_at_door", 10, &PeopleCounter::recvPersonAtDoor, this);
+    pub_debug_count_ = n.advertise<jsk_rviz_plugins::OverlayText>("debug_count", 1);
     pn.param<int32_t>("initial_count", count_, 0);
     ROS_INFO_STREAM("starting with an initial count of " << count_ << " people");
   }
@@ -42,6 +43,12 @@ void PeopleCounter::runStateMachine() {
     }
     break;
   case PERSON_AT_DOOR_ENTERING:
+    if (!person_at_door_) {
+      state_ = DOOR_CLOSING_AFTER_PERSON;
+      ROS_INFO("DOOR_CLOSING_AFTER_PERSON");
+    }
+    break;
+  case DOOR_CLOSING_AFTER_PERSON:
     if (!door_open_) {
       state_ = IDLE;
       ROS_INFO("IDLE");
@@ -74,6 +81,11 @@ void PeopleCounter::runStateMachine() {
   std_msgs::Int32 msg;
   msg.data = count_;
   pub_num_people_.publish(msg);
+  // show this in rviz
+  jsk_rviz_plugins::OverlayText debug;
+  debug.action = jsk_rviz_plugins::OverlayText::ADD;
+  debug.text = "Count = " + std::to_string(count_);
+  pub_debug_count_.publish(debug);
 }
 
 }
