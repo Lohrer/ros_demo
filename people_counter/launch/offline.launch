@@ -2,7 +2,10 @@
 <launch>
   <arg name="bag_file" default="$(find people_counter)/bag/door_open_close_multiple_people.bag"
        doc="Playback bag file for offline mode" />
+  <!-- TODO: add initial count -->
+  <!--
   <arg name="initial_count" value="2" />
+  -->
   <param name="use_sim_time" value="true"/>
 
   <!-- launch the people detector -->
@@ -40,10 +43,17 @@
     <remap from="scan"              to="/laser/scan" />
   </node>
 
-  <!-- Launch the actual people counter, for counting the number of people in the room -->
+
+  <!-- TODO: add initial count parameter -->
+  <!--
+  <param name="initial_count" value="$(arg initial_count)" />
+  -->
+
+  <!-- TODO: Launch the actual people counter, for counting the number of people in the room -->
+  <!--
   <node pkg="people_counter" type="people_counter"          name="people_counter"          output="screen" >
-    <param name="initial_count" value="$(arg initial_count)" />
   </node>
+  -->
 
   <!-- Open rviz -->
   <node pkg="rviz" type="rviz" name="viz" args="-d $(find people_counter)/rviz/lidar.rviz" />
